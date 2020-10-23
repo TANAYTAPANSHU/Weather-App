@@ -7,6 +7,7 @@ window.addEventListener('load', () => {
     let temp;
     let country;
     let city = document.getElementById("city");
+    icon = document.getElementById("icon");
     city.addEventListener('click', function() {
         console.log('tanay');
 
@@ -14,6 +15,7 @@ window.addEventListener('load', () => {
 
     })
     temp = document.getElementById("temp");
+    desc = document.getElementById("desc");
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -31,8 +33,10 @@ window.addEventListener('load', () => {
                 .then(data => {
                     name = data.name;
                     city.textContent = data.name;
-                    temp.textContent = data.main.temp;
-                    console.log(name);
+                    temp.textContent = data.main.temp + " degree";
+                    icon.src = data.weather[0].icon;
+                    desc.textContent = data.weather[0].description;
+                    console.log(data.weather[0]);
                 });
 
 
