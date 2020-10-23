@@ -9,7 +9,11 @@ window.addEventListener('load', () => {
     let city = document.getElementById("city");
     city.addEventListener('click', function() {
         console.log('tanay');
+
+
+
     })
+    temp = document.getElementById("temp");
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -17,7 +21,7 @@ window.addEventListener('load', () => {
             lat = position.coords.latitude;
 
             const proxy = "https://cors-anywhere.herokuapp.com/";
-            const api = `https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${long}`;
+            const api = `${proxy}https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${long}`;
 
 
             fetch(api)
@@ -27,6 +31,7 @@ window.addEventListener('load', () => {
                 .then(data => {
                     name = data.name;
                     city.textContent = data.name;
+                    temp.textContent = data.main.temp;
                     console.log(name);
                 });
 
